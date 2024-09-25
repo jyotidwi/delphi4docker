@@ -34,7 +34,7 @@ jobs:
               #logout: true
           - name: Push Docker image
             run: |
-              docker pull lmbelo/d4d:0.0.1-alpha
+              docker pull lmbelo/delphi:0.0.1-alpha
           - name: Run Docker container
             run: |
               cat > $(pwd)/test/compile.bat <<EOF       
