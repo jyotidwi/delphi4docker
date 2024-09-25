@@ -4,12 +4,6 @@ name: DockerDelphiCompile
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
-  push:
-    branches: [ "dev" ]
-  pull_request:
-    branches: [ "dev" ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -50,10 +44,3 @@ jobs:
               docker exec -i d4d bash -c "wine ./Shared/compile.bat"
               
               ls -a
-
-          - name: Upload a Build Artifact
-            uses: actions/upload-artifact@v3.2.1
-            with:
-               name: Delphi4Docker.zip
-               path: ${{ GITHUB_WORKSPACE}}/.exe
-          
