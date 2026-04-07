@@ -1,0 +1,26 @@
+name: Delphi Build (Self-Hosted)
+on:
+  push:
+    branches: [ dev, main ]
+  pull_request:
+    branches: [ dev, main ]
+
+jobs:
+  build:
+    runs-on: self-hosted # This will run on your Windows machine
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build 4K Activator (Win32)
+        shell: powershell
+        run: |
+          # The slim compiler is located at C:\Delphi37_Slim
+          # We use the build script we created
+          & "4K Download Products Activator\Source\build_activator.ps1"
+
+      - name: Upload Activator Binary
+        uses: actions/upload-artifact@v4
+        with:
+          name: 4K-Activator-Binary
+          path: 4K Download Products Activator/Source/Bin/Activator.exe
